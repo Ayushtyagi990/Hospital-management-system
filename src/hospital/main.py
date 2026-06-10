@@ -33,6 +33,11 @@ def create_Doctor(Doctor :  Doctor, session : Session = Depends(get_session)):
     session.refresh(Doctor)
     return Doctor
 
+@app.get("/Doctor")
+def get_Doctor(session : Session = Depends(get_session)):
+    doctor = session.exec(select(Doctor)).all()
+    return doctor
+
 
 
 @app.delete("/Doctor", status_code = 204)
